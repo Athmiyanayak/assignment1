@@ -1,4 +1,4 @@
-public class assignment2 {
+public class assignment2{
     public static void main(String[] args) {
         double[] ratings = {6.0, 4.0, 6.0, 3.0, 6.0, 3.0, 6.0, 5.0, 4.0}; 
         int maxCount = 0;
