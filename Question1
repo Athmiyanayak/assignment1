@@ -1,4 +1,4 @@
-public class assignment1 {
+public class assignment1{
     public static void main(String[] args) {
         int max_sales = 0;
         int[] sales = {20, 100, 40, 60};
