@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+int isValidIPv4(const char *ip) {
+    int num, dots = 0;
+    char *copy = strdup(ip);
+    char *token = strtok(copy, ".");
+    while (token) {
+        num = atoi(token);
+        if (num < 0 || num > 255 || (token[0] == '0' && strlen(token) > 1)) {
+            free(copy);
+            return 0;}
+        token = strtok(NULL, ".");
+        dots++;}
+    free(copy);
+    return dots == 4;
+}int main() {
+    char *testIPs[] = {"222.111.111.111", "5555..555", "0.0.0.255", "0.0.0.0255"};
+    for (int i = 0; i < 4; i++) {
+        printf("%s -> %s\n", testIPs[i], isValidIPv4(testIPs[i]) ? "true" : "false");
+    }
+    return 0;
+}
