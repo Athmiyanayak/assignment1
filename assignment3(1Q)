@@ -1,0 +1,30 @@
+ #include <stdio.h>
+#include <string.h>
+int main() {
+    char str[] = "the cat and the hat";
+    char words[10][20]; 
+    int count[10] = {0}; 
+    int wordIndex = 0;
+char *token = strtok(str, " ");  
+    while (token != NULL) {
+        int found = 0;
+        for (int i = 0; i < wordIndex; i++) {
+            if (strcmp(words[i], token) == 0) { 
+                count[i]++; // Increase count
+                found = 1;
+                break;} }
+        if (!found) {
+            strcpy(words[wordIndex], token);
+            count[wordIndex] = 1;
+            wordIndex++;}
+            token = strtok(NULL, " "); // Get next word
+    }
+    printf("{ ");
+    for (int i = 0; i < wordIndex; i++) {
+        printf("\"%s\": %d", words[i], count[i]);
+        if (i < wordIndex - 1) printf(", ");
+    }
+    printf(" }\n");
+
+    return 0;
+}
