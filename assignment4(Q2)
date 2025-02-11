@@ -1,0 +1,28 @@
+#include <stdio.h>
+void nextGreaterElements(int arr[], int size) {
+    int result[size];
+    for (int i = 0; i < size; i++) {
+        result[i] = -1;
+        for (int j = i + 1; j < size; j++) {
+            if (arr[j] > arr[i]) {
+                result[i] = arr[j];
+                break;
+            } }}
+    printf("[");
+    for (int i = 0; i < size; i++) {
+        printf("%d", result[i]);
+        if (i < size - 1) {
+            printf(", ");
+        }}
+    printf("]\n");}
+int main() {
+    int arr1[] = {6, 8, 0, 1, 3};
+    nextGreaterElements(arr1, 5);
+    int arr2[] = {1, 3, 2, 4};
+    nextGreaterElements(arr2, 4);
+    int arr3[] = {10, 20, 30, 50};
+    nextGreaterElements(arr3, 4);
+    int arr4[] = {50, 40, 30, 10};
+    nextGreaterElements(arr4, 4);
+    return 0;
+}
