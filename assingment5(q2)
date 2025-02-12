@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+int absDiff(int a, int b) {
+    return (a > b) ? (a - b) : (b - a);
+}
+void sortReadings(int readings[], int diffs[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (diffs[j] > diffs[j + 1]) {
+                int temp = diffs[j];
+                diffs[j] = diffs[j + 1];
+                diffs[j + 1] = temp;
+                
+                temp = readings[j];
+                readings[j] = readings[j + 1];
+                readings[j + 1] = temp;}}}}
+int findKthClosest(int readings[], int n, int target, int k) {
+    int diffs[n];
+    for (int i = 0; i < n; i++) {
+        diffs[i] = absDiff(readings[i], target);
+    }
+    sortReadings(readings, diffs, n);
+    return readings[k - 1];
+}
+
+int main() {
+    int readings[] = {72, 75, 68, 80, 74};
+    int target = 73, k = 2;
+    int n = sizeof(readings) / sizeof(readings[0]);
+    printf("%d\n", findKthClosest(readings, n, target, k));
+    return 0;
+}
