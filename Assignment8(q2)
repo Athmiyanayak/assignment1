@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class GenerateParentheses {
+    // Method to generate all valid combinations of n pairs of parentheses
+    public static List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        generate(result, "", 0, 0, n);
+        return result;
+    }
+    
+    // Recursive method to generate parentheses
+    private static void generate(List<String> result, String current, int open, int close, int max) {
+        // Base case: when the current string reaches the maximum valid length
+        if (current.length() == max * 2) {
+            result.add(current);
+            return;
+        }
+        // Add an opening parenthesis if it does not exceed max
+        if (open < max) generate(result, current + "(", open + 1, close, max);
+        // Add a closing parenthesis if it does not exceed the number of open parentheses
+        if (close < open) generate(result, current + ")", open, close + 1, max);
+    }
+    
+    public static void main(String[] args) {
+        // Test case: generate parentheses for n = 3
+        System.out.println(generateParenthesis(3));
+    }
+}
